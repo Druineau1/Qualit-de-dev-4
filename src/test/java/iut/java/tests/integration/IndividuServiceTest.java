@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +43,14 @@ public class IndividuServiceTest {
 		assertThat(list.get(3).getLastName()).startsWith("Tumbelty");
 		assertThat(list.get(4).getLastName()).startsWith("Robertz");
 		
+	}
+	
+	@Test
+	public void testLoadedIndividusTitle() {
+		// Liste des titres attendus
+		List<String> listTitle = List.of("Honorable", "Mr", "Ms", "Mrs", "Dr", "Rev");
+
+	    // Vérification des titres des individus chargés
+		assertThat(service.getIndividusList().stream().map(IndividuDto::getTitle)).containsOnly(listTitle.toArray(new String[0]));
 	}
 }
