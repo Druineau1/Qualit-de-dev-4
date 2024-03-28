@@ -2,7 +2,6 @@ package iut.java.tests.unit;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 
