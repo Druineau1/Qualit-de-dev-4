@@ -3,9 +3,14 @@ package iut.java.tests.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import iut.java.dto.IndividuDto;
 import iut.java.service.IndividuService;
 
 public class IndividuServiceTest {
@@ -26,6 +31,19 @@ public class IndividuServiceTest {
         
        assertThat(service.getIndividusList()).hasSize(attendu);
 
+		
+	}
+	
+	@Test
+	public void testLoadedIndividusName() {
+		//Act Appel de la méthode getIndividusList pour charger les individus 
+		List<IndividuDto> list = service.getIndividusList();
+		//Assert Vérification nom attendu
+		assertThat(list.get(0).getLastName()).startsWith("Twomey");
+		assertThat(list.get(1).getLastName()).startsWith("Snoden");
+		assertThat(list.get(2).getLastName()).startsWith("Pendlebury");
+		assertThat(list.get(3).getLastName()).startsWith("Tumbelty");
+		assertThat(list.get(4).getLastName()).startsWith("Robertz");
 		
 	}
 }
