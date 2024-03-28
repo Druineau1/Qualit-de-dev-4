@@ -2,8 +2,10 @@ package iut.java.tests.unit;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,4 +34,20 @@ public class IndividuUtilsTest {
         
         
 	}
+	@Test
+	void testGetIndividu() {
+		//Initialiation de la ligne de test ainsi que du format nécessaire pour birthDate
+		String expectedLine = new String("1,Billi,Beves,Ms,163,27/03/2001");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		//Déclaration d'un individu de type IndividuDto
+		IndividuDto individu = IndividuUtils.getIndividu(expectedLine);
+		//Test des valeurs 
+		assertThat(individu.getId()).isEqualTo(1);
+		assertThat(individu.getFirstName()).isEqualTo("Billi");
+		assertThat(individu.getLastName()).isEqualTo("Beves");
+		assertThat(individu.getTitle()).isEqualTo("Ms");
+		assertThat(individu.getHeight()).isEqualTo(163);
+		assertThat(individu.getBirthDate().format(formatter)).isEqualTo("27/03/2001");
+	}
 }
+
