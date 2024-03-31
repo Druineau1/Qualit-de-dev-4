@@ -2,9 +2,11 @@ package iut.java.tests.integration;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,5 +74,27 @@ public class IndividuServiceTest {
 	    assertThat(nombreIndividuAvant2000).isEqualTo(avant2000Attendu);
 	    assertThat(nombreIndividuApres2000).isEqualTo(apres2000Attendu);
 	
+	}
+	@Test
+	public void testLoadedIndividusTitleRepartition() {
+		// Récupération des titres
+	    Map<String, Long> titleRepartition = service.getTitleRepartition();
+	    long attenduHonorable=12l;
+	    long attenduMr=7l;
+	    long attenduMs=9l;
+	    long attenduMrs=7l;
+	    long attenduDr=12l;
+	    long attenduRev=3l;
+
+	    // Vérification du nombres de titres
+	    assertThat(titleRepartition)
+	        .containsOnly(
+	            entry("Honorable",attenduHonorable),
+	            entry("Mr", attenduMr),
+	            entry("Ms", attenduMs),
+	            entry("Mrs", attenduMrs),
+	            entry("Dr", attenduDr),
+	            entry("Rev", attenduRev)
+	        );
 	}
 }
